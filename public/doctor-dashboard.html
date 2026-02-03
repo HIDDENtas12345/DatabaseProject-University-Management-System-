@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Doctor Dashboard</title>
+  <link rel="stylesheet" href="doctor.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-profile">
+      <img id="doctorPhoto" src="/assets/default-doctor.jpg" alt="Doctor Photo">
+      <h3 id="doctorName">Dr. Name</h3>
+      <p id="doctorQualification">Qualification</p>
+    </div>
+
+    <nav>
+      <a href="#" class="active" id="dashboardBtn">🏠 Dashboard</a>
+      <a href="#" id="viewProfileBtn">👤 View Profile</a>
+    </nav>
+
+    <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- Top Bar -->
+    <header class="topbar">
+      <h2>Doctor Dashboard</h2>
+      <div class="topbar-actions">
+        <span id="notificationBell">🔔</span>
+      </div>
+    </header>
+
+    <!-- Dashboard Section -->
+     <section id="dashboardSection"></section>
+   <div class="card">
+    <h3>📅 Today's Appointments</h3>
+    <table id="appointmentsTable">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Patient Name</th>
+                <th>Reason</th>
+                <th>Status</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody> <tr><td colspan="5">Loading...</td></tr></tbody>
+    </table>
+</div>
+
+
+      <div class="card">
+        <h3>Past Prescriptions</h3>
+        <div id="prescriptionsContainer"></div>
+      </div>
+        <div id="prescriptionModal" class="modal hidden">
+  <form id="prescriptionForm">
+    <h3 id="prescriptionModalTitle">New Prescription</h3>
+    <input type="hidden" id="appointmentId" name="appointment_id">
+    <label>Diagnosis:</label>
+    <textarea name="diagnosis" required></textarea>
+    <label>Medicines:</label>
+    <textarea name="medicines" required></textarea>
+    <label>Notes:</label>
+     <textarea name="notes" required></textarea>
+    <button type="submit">Submit</button>
+    <button type="button" onclick="closePrescriptionForm()">Cancel</button>
+  </form>
+</div>
+<div class="card">
+        <h3>Lab Test Request</h3>
+        <div id="labTestsContainer"></div>
+      </div>
+
+   <div id="labTestModal" class="modal hidden">
+  <h3 id="labTestModalTitle">Request Lab Test</h3>
+  <form id="labTestForm">
+    <input type="hidden" id="labTestPatientId" name="patient_id" />
+    <label>Lab Test Type</label>
+    <select id="labTestType" name="type_id" required>
+      <option value="">Select Test</option>
+    </select>
+    <label>Notes (optional)</label>
+    <textarea name="notes"></textarea>
+    <button type="submit">Request Lab Test</button>
+    <button type="button" onclick="closeLabTestForm()">Cancel</button>
+  </form>
+</div>
+
+
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profileSection" class="hidden">
+      <h3>Doctor Profile</h3>
+
+      <!-- View Profile -->
+      <div id="profileDisplay">
+        <img id="view_photo" src="/assets/default-doctor.jpg" class="profile-pic">
+        <p><strong>Name:</strong> <span id="view_name"></span></p>
+        <p><strong>Email:</strong> <span id="view_email"></span></p>
+        <p><strong>Phone:</strong> <span id="view_phone"></span></p>
+        <p><strong>Address:</strong> <span id="view_address"></span></p>
+        <p><strong>Gender:</strong> <span id="view_gender"></span></p>
+        <p><strong>Date of Birth:</strong> <span id="view_dob"></span></p>
+
+        <button id="editProfileBtn">Edit Profile</button>
+      </div>
+
+      <!-- Edit Profile -->
+      <form id="profileForm" class="hidden" enctype="multipart/form-data">
+        <h4>Edit Profile</h4>
+        <select name="specialization" id="specialization" required>
+    <option value="">Select Specialization</option>
+    <option value="Cardiology">Cardiology</option>
+    <option value="Dermatology">Dermatology</option>
+    <option value="ENT">ENT</option>
+    <option value="Surgery">Surgery</option>
+    <option value="Orthopedics">Orthopedics</option>
+    <option value="Neurology">Neurology</option>
+    <option value="General">General</option>
+  </select>
+        <input type="text" name="qualification" id="qualification" placeholder="Qualification" required>
+        <select name="available_days" id="available_days" required>
+          <option value="">Select Available Day</option>
+          <option value="Monday">Monday</option>
+          <option value="Tuesday">Tuesday</option>
+          <option value="Wednesday">Wednesday</option>
+          <option value="Thursday">Thursday</option>
+          <option value="Friday">Friday</option>
+          <option value="Saturday">Saturday</option>
+          <option value="Sunday">Sunday</option>
+        </select>
+        <input type="text" name="timings" id="timings" placeholder="Timings" required>
+        <input type="text" name="room_number" id="room_number" placeholder="Room Number" required>
+        <input type="file" name="profileImage" accept="image/*">
+        <button type="submit">Save Changes</button>
+      </form>
+
+    </section>
+
+  </main>
+</div>
+
+<script src="doctor.js"></script>
+</body>
+</html>

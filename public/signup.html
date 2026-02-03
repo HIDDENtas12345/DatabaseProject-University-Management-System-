@@ -1,0 +1,47 @@
+<!-- public/signup.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up | Medical Centre</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="auth-page">
+  <div class="auth-box">
+    <h2>Sign Up</h2>
+    <form id="registerForm">
+      <input type="text" name="user_id" placeholder="User ID" required><br>
+      <input type="text" name="name" placeholder="Full Name" required><br>
+      <input type="email" name="email" placeholder="Email" required><br>
+      <input type="password" name="password" placeholder="Password" required><br>
+      
+      <input type="text" name="phone" placeholder="Phone" required><br>
+      
+      <select name="gender" required>
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select><br>
+
+      <input type="date" name="dob" placeholder="Date of Birth" required><br>
+      <textarea name="address" placeholder="Address" required></textarea><br>
+
+      <select name="role" required>
+        <option value="">Select Role</option>
+        <option value="doctor">Doctor</option>
+        <option value="patient">Patient</option>
+        <option value="receptionist">Receptionist</option>
+        <option value="pharmacist">Pharmacist</option>
+        <option value="admin">Admin</option>
+        <option value="staff">Staff</option>
+      </select><br>
+
+      <button type="submit">Register</button>
+    </form>
+    <div id="registerResult"></div>
+    <p>Already have an account? <a href="login.html">Log in</a></p>
+  </div>
+
+  <script src="signup.js"></script>
+</body>
+</html>

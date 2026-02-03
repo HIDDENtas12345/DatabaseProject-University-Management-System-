@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard - Medical Centre</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+<div class="dashboard">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Admin Panel</h2>
+    <ul>
+      <li><a href="#" id="navDoctors"><i class="fas fa-user-md"></i> Doctors</a></li>
+      <li><a href="#" id="navPatients"><i class="fas fa-user-injured"></i> Patients</a></li>
+      <li><a href="#" id="navStaff"><i class="fas fa-users-cog"></i> Receptionists/Staff</a></li>
+      <li><a href="#" id="navTasks"><i class="fas fa-tasks"></i> Tasks</a></li>
+<li><a href="#" id="navDuty"><i class="fas fa-clipboard-list"></i> Duty Schedule</a></li>
+<li><a href="#" id="navAnnouncements"><i class="fas fa-bullhorn"></i> Announcements</a></li>
+
+      <li><a href="#" id="navProfile"><i class="fas fa-user-circle"></i> Profile</a></li>
+      <li><a href="login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </div>
+
+  <!-- Main content -->
+  <div class="main-content">
+    <div class="topbar">
+      <h1>Admin Dashboard</h1>
+     <div class="admin-profile">
+  <i class="fas fa-user-circle"></i> <span id="adminName">Admin</span>
+</div>
+    </div>
+
+    <!-- Cards -->
+    <div class="cards">
+      <div class="card">
+        <h3>Total Doctors</h3>
+        <p id="totalDoctors">0</p>
+      </div>
+      <div class="card">
+        <h3>Total Patients</h3>
+        <p id="totalPatients">0</p>
+      </div>
+      <div class="card">
+        <h3>Appointments Today</h3>
+        <p id="totalAppointments">0</p>
+      </div>
+      <div class="card">
+        <h3>Total Staff</h3>
+        <p id="totalStaff">0</p>
+      </div>
+    </div>
+
+    <!-- Doctors Section -->
+    <section id="doctorsSection" class="section" style="display:none">
+      <h2>Doctors Management</h2>
+      <button id="addDoctorBtn">Add Doctor</button>
+      <form id="doctorForm" style="display:none">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="text" name="specialization" placeholder="Specialization" required>
+        <input type="text" name="qualification" placeholder="Qualification" required>
+        <input type="text" name="available_days" placeholder="Available Days">
+        <input type="text" name="timings" placeholder="Timings">
+        <input type="text" name="room_number" placeholder="Room Number">
+        <button type="submit">Save Doctor</button>
+      </form>
+      <table id="doctorsTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Specialization</th>
+            <th>Qualification</th>
+            <th>Available Days</th>
+            <th>Timings</th>
+            <th>Room</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+<!-- Patients Section -->
+<section id="patientsSection" class="section" style="display:none">
+  <h2>Patients</h2>
+  <table id="patientsTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Gender</th>
+        <th>DOB</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<!-- Appointments Section -->
+
+    <!-- Staff Section -->
+    <section id="staffSection" class="section" style="display:none">
+      <h2>Staff Management</h2>
+      <button id="addStaffBtn">Add Staff</button>
+      <form id="staffForm" style="display:none">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="phone" placeholder="Phone">
+        <select name="position" required>
+          <option value="Nurse">Nurse</option>
+          <option value="Lab Assistant">Lab Assistant</option>
+          <option value="Cleaner">Cleaner</option>
+          <option value="Technician">Technician</option>
+          <option value="Security">Security</option>
+          <option value="Maintenance">Maintenance</option>
+        </select>
+        <select name="shift" required>
+          <option value="Morning">Morning</option>
+          <option value="Evening">Evening</option>
+          <option value="Night">Night</option>
+        </select>
+        <input type="text" name="department" placeholder="Department">
+        <button type="submit">Save Staff</button>
+      </form>
+
+      <table id="staffTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Shift</th>
+            <th>Department</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Staff Tasks Section -->
+    <section id="tasksSection" class="section" style="display:none">
+      <h2>Staff Tasks</h2>
+      <form id="taskForm">
+        <select name="user_id" required>
+          <option value="">Select Staff</option>
+        </select>
+        <input type="text" name="task_name" placeholder="Task Name" required>
+        <input type="date" name="deadline" placeholder="Deadline">
+        <button type="submit">Assign Task</button>
+      </form>
+
+      <table id="tasksTable">
+        <thead>
+          <tr>
+            <th>Staff Name</th>
+            <th>Task</th>
+            <th>Deadline</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Staff Duty Schedule Section -->
+    <section id="dutySection" class="section" style="display:none">
+      <h2>Staff Duty Schedule</h2>
+      <form id="dutyForm">
+        <select name="user_id" required>
+          <option value="">Select Staff</option>
+        </select>
+        <input type="date" name="duty_date" required>
+        <select name="shift" required>
+          <option value="Morning">Morning</option>
+          <option value="Evening">Evening</option>
+          <option value="Night">Night</option>
+        </select>
+        <input type="text" name="department" placeholder="Department">
+        <input type="text" name="role_assigned" placeholder="Role Assigned">
+        <button type="submit">Assign Duty</button>
+      </form>
+
+      <table id="dutyTable">
+        <thead>
+          <tr>
+            <th>Staff Name</th>
+            <th>Date</th>
+            <th>Shift</th>
+            <th>Department</th>
+            <th>Role Assigned</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Announcements Section -->
+    <section id="announcementsSection" class="section" style="display:none">
+      <h2>Announcements</h2>
+      <form id="announcementForm">
+        <input type="text" name="title" placeholder="Announcement Title" required>
+        <textarea name="content" placeholder="Message" required></textarea>
+        <button type="submit">Post Announcement</button>
+      </form>
+      <ul id="announcementList"></ul>
+    </section>
+
+    <!-- Admin Profile Section -->
+    <section id="profileSection" class="section" style="display:none">
+      <h2>Admin Profile</h2>
+      <form id="profileForm">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="phone" placeholder="Phone">
+        <select name="gender">
+          <option value="">Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+        <input type="date" name="dob" placeholder="Date of Birth">
+        <input type="text" name="address" placeholder="Address">
+        <button type="submit">Update Profile</button>
+      </form>
+    </section>
+
+  </div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Patient Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2 id="sidebarPatientName">Patient Panel</h2>
+      <img id="sidebarProfileImg" src="/assets/default-doctor.jpg" alt="Profile" width="80" />
+      <ul>
+
+        <li data-target="appointmentsSection"><i class="fas fa-calendar-check"></i> Appointments</li>
+        <li data-target="medicalHistorySection"><i class="fas fa-file-medical-alt"></i> Medical History</li>
+        <li data-target="prescriptionsSection"><i class="fas fa-prescription-bottle-alt"></i> Prescriptions</li>
+        <li data-target="updateProfileSection"><i class="fas fa-user-edit"></i> Update Profile</li>
+        <li data-target="labTestsSection"><i class="fas fa-vials"></i> Lab Tests</li>
+        <li data-target="billingSection"><i class="fas fa-file-invoice-dollar"></i> Billing</li>
+        <li data-target="notificationsSection"><i class="fas fa-bell"></i> Notifications</li>
+        <li id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</li>
+      </ul>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+      <div class="topbar">
+        <h1>Welcome</h1>
+        <div class="admin-profile">
+          <i class="fas fa-user-circle"></i> Patient
+        </div>
+      </div>
+
+      <!-- Dashboard Cards -->
+      <div id="dashboardCards" class="section cards">
+        <div class="card">
+          <h3>Upcoming Appointments</h3>
+          <p id="upcomingAppointments">0</p>
+        </div>
+        <div class="card">
+          <h3>Medical History Records</h3>
+          <p id="medicalHistoryCount">0</p>
+        </div>
+        <div class="card">
+          <h3>Active Prescriptions</h3>
+          <p id="activePrescriptions">0</p>
+        </div>
+        <div class="card">
+          <h3>Profile Completion</h3>
+          <p id="profileCompletion">0%</p>
+        </div>
+      </div>
+
+      <!-- Appointments Section -->
+      <div id="appointmentsSection" class="section" style="display:none;">
+        <h3>Book New Appointment</h3>
+        <form id="bookAppointmentForm">
+          <label for="doctorId">Select Doctor:</label>
+          <select id="doctorId">
+            <option value="">-- Choose Doctor --</option>
+          </select>
+
+          <label for="appointmentDate">Date:</label>
+          <input type="date" id="appointmentDate" required />
+
+          <label for="appointmentTime">Time:</label>
+          <input type="time" id="appointmentTime" required />
+
+          <label for="reason">Reason:</label>
+          <textarea id="reason" placeholder="Brief reason..." required></textarea>
+
+          <button type="submit">Book Appointment</button>
+        </form>
+        <div id="appointmentMessage"></div>
+
+        <h3>My Appointments</h3>
+        <div id="AppointmentsContainer"></div>
+      </div>
+
+      <!-- Medical History Section -->
+      <div id="medicalHistorySection" class="section" style="display:none;">
+        <h3>Medical History</h3>
+        <div id="medicalHistoryContainer"></div>
+      </div>
+
+      <!-- Prescriptions Section -->
+      <div id="prescriptionsSection" class="section" style="display:none;">
+        <h3>Prescriptions</h3>
+        <div id="prescriptionsContainer"></div>
+      </div>
+
+      <!-- Update Profile Section -->
+      <div id="updateProfileSection" class="section" style="display:none;">
+        <h3>Update Profile</h3>
+        <form id="updateProfileForm" enctype="multipart/form-data">
+          <label for="profileName">Full Name:</label>
+          <input type="text" id="profileName" name="name" required />
+
+          <label for="profileEmail">Email:</label>
+          <input type="email" id="profileEmail" name="email" required />
+
+          <label for="profilePhone">Phone:</label>
+          <input type="text" id="profilePhone" name="phone" />
+
+          <label for="profileDob">Date of Birth:</label>
+          <input type="date" id="profileDob" name="dob" />
+
+          <label for="profileAddress">Address:</label>
+          <textarea id="profileAddress" name="address"></textarea>
+
+          <button type="submit">Update</button>
+        </form>
+        <div id="profileMessage"></div>
+      </div>
+
+      <!-- Lab Tests Section -->
+      <div id="labTestsSection" class="section" style="display:none;">
+        <h3>Lab Tests</h3>
+        <div id="labTestsContainer"></div>
+      </div>
+
+      <!-- Billing Section -->
+      <div id="billingSection" class="section" style="display:none;">
+        <h3>Billing</h3>
+        <div id="billingContainer"></div>
+      </div>
+
+      <!-- Notifications Section -->
+      <div id="notificationsSection" class="section" style="display:none;">
+        <h3>Notifications</h3>
+        <div id="notificationsContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const sidebarItems = document.querySelectorAll(".sidebar ul li[data-target]");
+      const sections = document.querySelectorAll(".section");
+
+      sidebarItems.forEach(item => {
+        item.addEventListener("click", () => {
+          const targetId = item.getAttribute("data-target");
+          sections.forEach(sec => sec.style.display = "none");
+          document.getElementById(targetId).style.display = "block";
+        });
+      });
+
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+        fetch("http://localhost:3001/api/logout", {
+          method: "POST",
+          credentials: "include"
+        }).then(() => window.location.href = "login.html");
+      });
+    });
+  </script>
+
+  <script src="patient.js"></script>
+</body>
+</html>

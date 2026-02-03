@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pharmacist Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    .section { display: none; }
+    .active-section { display: block; }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>Pharmacy</h2>
+      <ul>
+        <li onclick="showSection('dashboard')"><i class="fas fa-home"></i> Dashboard</li>
+        <li onclick="showSection('medicines')"><i class="fas fa-pills"></i> Medicines</li>
+        <li onclick="showSection('manage')"><i class="fas fa-boxes"></i> Manage Stock</li>
+        <li onclick="showSection('prescriptions')"><i class="fas fa-file-prescription"></i> Prescriptions</li>
+        <li onclick="showSection('expired')"><i class="fas fa-exclamation-triangle"></i> Expired</li>
+        <li onclick="showSection('profile')"><i class="fas fa-user"></i> Profile</li>
+        <li><a href="login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+      </ul>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+      <div class="topbar">
+        <h1>Pharmacist Dashboard</h1>
+        <div class="admin-profile">
+          <i class="fas fa-user-circle"></i> Pharmacist
+        </div>
+      </div>
+    <!-- Profile Section -->
+<div id="profile" class="section">
+  <h2>My Profile</h2>
+
+  <form class="form" onsubmit="updateProfile(event)">
+    <label>Name</label>
+    <input type="text" id="profileName">
+
+    <label>Email</label>
+    <input type="email" id="profileEmail" readonly>
+
+    <label>Phone</label>
+    <input type="text" id="profilePhone">
+
+    <label>Gender</label>
+    <select id="profileGender">
+      <option>Male</option>
+      <option>Female</option>
+      <option>Other</option>
+    </select>
+     <label>Date of Birth</label>
+    <input type="date" id="profileDob">
+
+    <label>Address</label>
+    <textarea id="profileAddress"></textarea>
+
+    <button type="submit">Update Profile</button>
+    </form>
+    </div>
+    
+
+      <!-- Dashboard Section -->
+      <div id="dashboard" class="section active-section">
+        <div class="cards">
+          <div class="card">
+            <h3>Medicines in Stock</h3>
+            <p id="totalMedicines">154</p>
+          </div>
+          <div class="card">
+            <h3>Prescriptions Today</h3>
+            <p id="prescriptionsToday">34</p>
+          </div>
+          <div class="card">
+            <h3>Low Stock Alerts</h3>
+            <p id="lowStock">6</p>
+          </div>
+          <div class="card">
+            <h3>Expired Medicines</h3>
+            <p id="expiredMeds">3</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Medicines Section -->
+      <div id="medicines" class="section">
+        <h2>Medicines</h2>
+        <table class="styled-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Stock</th>
+          <th>Price</th>
+          <th>Expiry</th>
+          <th>Company</th>
+        </tr>
+      </thead>
+    </table>
+      </div>
+
+      <!-- Manage Stock Section -->
+      <div id="manage" class="section">
+        <h2>Manage Stock</h2>
+       <form class="form">
+      <label>Medicine Name</label>
+      <input type="text" placeholder="Enter medicine name">
+      <label>Category</label>
+      <input type="text" placeholder="Tablet / Syrup">
+      <label>Stock</label>
+      <input type="number" placeholder="Enter stock quantity">
+      <label>Price</label>
+      <input type="number" placeholder="Enter price">
+      <label>Expiry Date</label>
+      <input type="date">
+       <label>Company</label>
+  <input type="text" placeholder="Enter company name" required>
+      <button type="submit">Add Medicine</button>
+    </form>
+      </div>
+
+      <!-- Prescriptions Section -->
+      <div id="prescriptions" class="section">
+        <h2>Prescriptions</h2>
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Doctor</th>
+              <th>Patient</th>
+              <th>Date</th>
+              <th>Medicines</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+
+      <!-- Expired Medicines Section -->
+     <div id="expired" class="section">
+  <h2>Expired Medicines</h2>
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Expiry</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Paracetamol 500mg</td>
+        <td>2025-09-30</td>
+        <td style="color:red; font-weight:bold;">Expired</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+  <script src="pharmacist.js">  </script>
+</body>
+</html>
